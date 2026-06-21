@@ -6,7 +6,9 @@
 <title>Our Goal - Aura Developer</title>
 
 
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+
 
 
 <style>
@@ -17,11 +19,13 @@
 }
 
 
+
 html, body{
     width:100%;
     min-height:100%;
     overflow-x:hidden;
 }
+
 
 
 body{
@@ -33,6 +37,7 @@ body{
     position:relative;
     cursor:none;
 }
+
 
 
 /* BACKGROUND */
@@ -49,6 +54,7 @@ body::before{
 }
 
 
+
 body::after{
     content:"";
     position:fixed;
@@ -61,6 +67,7 @@ body::after{
     z-index:-1;
     pointer-events:none;
 }
+
 
 
 /* CURSOR */
@@ -77,6 +84,7 @@ body::after{
 }
 
 
+
 .cursor-ring{
     position:fixed;
     width:40px;
@@ -88,6 +96,7 @@ body::after{
     z-index:99998;
     transition:0.08s ease;
 }
+
 
 
 .spark{
@@ -103,10 +112,12 @@ body::after{
 }
 
 
+
 @keyframes sparkFly{
     0%{opacity:1; transform:scale(1);}
     100%{opacity:0; transform:translateY(-30px) scale(0);}
 }
+
 
 
 .cursor.hover{
@@ -116,10 +127,12 @@ body::after{
 }
 
 
+
 .cursor-ring.hover{
     transform:translate(-50%,-50%) scale(1.4);
     border-color:rgba(0,229,255,0.9);
 }
+
 
 
 /* LOGO - HOVER EFFECT */
@@ -133,6 +146,7 @@ body::after{
 }
 
 
+
 .site-logo img{
     width:72px;
     height:auto;
@@ -142,10 +156,12 @@ body::after{
 }
 
 
+
 .site-logo img:hover{
     transform:scale(1.05);
     filter:brightness(1.2) drop-shadow(0 0 15px #00e5ff);
 }
+
 
 
 /* HERO - 3D EXPLOSION ANIMATION */
@@ -160,9 +176,11 @@ body::after{
 }
 
 
+
 .hero-content{
     max-width:1100px;
 }
+
 
 
 .big-title{
@@ -183,6 +201,7 @@ body::after{
 }
 
 
+
 @keyframes title3DExplosion{
     0%{
         opacity:0;
@@ -201,6 +220,7 @@ body::after{
 }
 
 
+
 @keyframes titleGlowPulse{
     0%,100%{
         text-shadow:0 0 12px rgba(0,229,255,0.9), 0 0 30px rgba(0,229,255,0.55), 0 0 55px rgba(138,43,226,0.45);
@@ -209,6 +229,7 @@ body::after{
         text-shadow:0 0 20px rgba(0,229,255,1), 0 0 50px rgba(0,229,255,0.8), 0 0 80px rgba(138,43,226,0.7);
     }
 }
+
 
 
 .sub-title{
@@ -222,14 +243,17 @@ body::after{
 }
 
 
+
 @keyframes fadeUp{
     to{opacity:1; transform:translateY(0);}
 }
 
 
+
 .sub-title:nth-child(2){
     animation-delay:0.2s;
 }
+
 
 
 .line{
@@ -245,15 +269,77 @@ body::after{
 }
 
 
+
 @keyframes lineExpand{
     from{width:0; opacity:0;}
     to{width:min(160px, 40vw); opacity:1;}
 }
 
 
+
 .line:nth-child(4){
     animation-delay:0.4s;
 }
+
+
+
+/* BACK TO HOME BUTTON */
+.home-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin:0 10% 28px;
+    padding:14px 20px;
+    text-decoration:none;
+    color:#fff;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:14px;
+    box-shadow:0 0 18px rgba(0,229,255,0.12);
+    transition:0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation:btnFadeIn 1.2s ease forwards;
+    opacity:0;
+    transform:translateY(40px);
+}
+
+
+
+@keyframes btnFadeIn{
+    to{opacity:1; transform:translateY(0);}
+}
+
+
+
+.home-btn:nth-child(5){
+    animation-delay:1.5s;
+}
+
+
+
+.home-btn:hover{
+    transform:translateY(-5px) scale(1.05);
+    border-color:rgba(0,229,255,0.5);
+    box-shadow:
+        0 0 30px rgba(0,229,255,0.3),
+        0 0 50px rgba(0,229,255,0.2);
+    color:#00e5ff;
+}
+
+
+
+.home-btn i{
+    color:#00e5ff;
+    font-size:1.1rem;
+    transition:0.3s ease;
+}
+
+
+
+.home-btn:hover i{
+    transform:translateX(-3px);
+    text-shadow:0 0 10px #00e5ff;
+}
+
 
 
 /* GOAL BLOCKS - ANIMATED */
@@ -264,6 +350,7 @@ body::after{
     align-items:center;
     justify-content:center;
 }
+
 
 
 .goal-item{
@@ -279,8 +366,10 @@ body::after{
 }
 
 
+
 .goal-item:nth-child(1){animation-delay:0.6s;}
 .goal-item:nth-child(2){animation-delay:0.9s;}
+
 
 
 @keyframes goalItemEnter{
@@ -298,9 +387,11 @@ body::after{
 }
 
 
+
 .goal-item:hover{
     transform:scale(1.05);
 }
+
 
 
 .goal-text{
@@ -314,9 +405,11 @@ body::after{
 }
 
 
+
 .goal-item:hover .goal-text{
     text-shadow:0 0 30px rgba(0,229,255,0.8), 0 0 50px rgba(138,43,226,0.6);
 }
+
 
 
 /* CROSSMARK - PULSE ANIMATION */
@@ -331,10 +424,12 @@ body::after{
 }
 
 
+
 @keyframes crossPulse{
     0%,100%{filter:drop-shadow(0 0 10px rgba(255,80,80,0.6));}
     50%{filter:drop-shadow(0 0 30px rgba(255,80,80,1), 0 0 50px rgba(255,150,80,0.8));}
 }
+
 
 
 .crossmark::before,
@@ -352,9 +447,11 @@ body::after{
 }
 
 
+
 .crossmark::before{
     transform:translate(-50%,-50%) rotate(45deg);
 }
+
 
 
 .crossmark::after{
@@ -362,10 +459,12 @@ body::after{
 }
 
 
+
 .goal-item:hover .crossmark{
     transform:scale(1.15);
     filter:drop-shadow(0 0 40px rgba(255,80,80,1), 0 0 70px rgba(255,150,80,0.8));
 }
+
 
 
 /* CHECKMARK - PULSE ANIMATION */
@@ -380,10 +479,12 @@ body::after{
 }
 
 
+
 @keyframes checkPulse{
     0%,100%{filter:drop-shadow(0 0 10px rgba(90,255,140,0.7));}
     50%{filter:drop-shadow(0 0 30px rgba(90,255,140,1), 0 0 50px rgba(140,255,200,0.8));}
 }
+
 
 
 .checkmark::before{
@@ -401,16 +502,19 @@ body::after{
 }
 
 
+
 .goal-item:hover .checkmark{
     transform:scale(1.15);
     filter:drop-shadow(0 0 40px rgba(90,255,140,1), 0 0 70px rgba(140,255,200,0.8));
 }
 
 
+
 /* DETAILS - FADE IN */
 .details{
     padding:30px 10% 90px;
 }
+
 
 
 .details-box{
@@ -429,6 +533,7 @@ body::after{
 }
 
 
+
 @keyframes detailsBoxEnter{
     0%{
         opacity:0;
@@ -441,6 +546,7 @@ body::after{
 }
 
 
+
 .details-box:hover{
     transform:translateY(-10px) scale(1.02);
     box-shadow:
@@ -449,6 +555,7 @@ body::after{
         inset 0 0 40px rgba(0,229,255,0.05);
     border-color:rgba(0,229,255,0.3);
 }
+
 
 
 .details-box h2{
@@ -460,10 +567,12 @@ body::after{
 }
 
 
+
 @keyframes h2Glow{
     0%,100%{text-shadow:0 0 15px rgba(0,229,255,0.5);}
     50%{text-shadow:0 0 25px rgba(0,229,255,0.8), 0 0 40px rgba(138,43,226,0.6);}
 }
+
 
 
 .details-box p{
@@ -476,13 +585,16 @@ body::after{
 }
 
 
+
 .details-box p:nth-child(2){animation-delay:1.2s;}
+
 
 
 @keyframes textFade{
     from{opacity:0; transform:translateY(20px);}
     to{opacity:1; transform:translateY(0);}
 }
+
 
 
 /* MOBILE */
@@ -496,9 +608,11 @@ body::after{
     .goal-item{gap:12px;}
     .goal-text{letter-spacing:1px;}
     .crossmark, .checkmark{transform:scale(0.85);}
+    .home-btn{margin:0 5% 24px; padding:12px 16px;}
     .details{padding:20px 6% 70px;}
     .details-box{padding:20px; border-radius:14px;}
 }
+
 
 
 @media (max-width:480px){
@@ -511,6 +625,7 @@ body::after{
     .goal-item{flex-direction:column; gap:10px;}
     .goal-text{font-size:clamp(1.5rem, 10vw, 2.2rem);}
     .crossmark, .checkmark{transform:scale(0.72);}
+    .home-btn{width:calc(100% - 24px); margin:0 12px 20px; justify-content:center; padding:12px 14px;}
     .details{padding:18px 5% 60px;}
     .details-box{padding:16px;}
 }
@@ -518,16 +633,20 @@ body::after{
 </head>
 
 
+
 <body>
+
 
 
 <div class="cursor"></div>
 <div class="cursor-ring"></div>
 
 
+
 <a href="home.html" class="site-logo">
     <img src="logo.png" alt="Aura Developers Logo">
 </a>
+
 
 
 <section class="hero">
@@ -537,11 +656,20 @@ body::after{
         <div class="line"></div>
 
 
+
+        <a href="home.html" class="home-btn">
+            <i class="fa-solid fa-house"></i>
+            Back to Home
+        </a>
+
+
+
         <div class="goal-list">
             <div class="goal-item">
                 <div class="goal-text">TO EARN PROFIT</div>
                 <div class="crossmark" aria-hidden="true"></div>
             </div>
+
 
 
             <div class="goal-item">
@@ -551,6 +679,7 @@ body::after{
         </div>
     </div>
 </section>
+
 
 
 <section class="details">
@@ -563,6 +692,7 @@ body::after{
         </p>
 
 
+
         <p>
             We want our work to create real value for businesses by turning visitors into customers and clients into long-term partners.
             Profit is important, but trust is the real foundation of success, and we build every project with that mindset.
@@ -572,10 +702,17 @@ body::after{
 </section>
 
 
+
+<!-- Add FontAwesome for icon -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+
+
 <script>
 const cursor = document.querySelector(".cursor");
 const ring = document.querySelector(".cursor-ring");
 const isTouch = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
+
 
 
 if(!isTouch){
@@ -599,7 +736,8 @@ if(!isTouch){
     
     animateCursor();
 
-    document.querySelectorAll("a, .goal-item, .details-box, .crossmark, .checkmark").forEach(el => {
+
+    document.querySelectorAll("a, .goal-item, .details-box, .crossmark, .checkmark, .home-btn").forEach(el => {
         el.addEventListener("mouseenter", () => {
             cursor.classList.add("hover");
             ring.classList.add("hover");
@@ -611,6 +749,7 @@ if(!isTouch){
     });
 }
 </script>
+
 
 
 </body>
