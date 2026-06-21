@@ -1,586 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aura Developer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Developer - Benefits</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: #050712;
+            color: #fff;
+            cursor: none;
+            -webkit-font-smoothing: antialiased;
+        }
 
-html, body{
-    width:100%;
-    min-height:100%;
-    overflow-x:hidden;
-    scroll-behavior:smooth;
-}
+        /* LOGO */
+        .site-logo {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 10000;
+            text-decoration: none;
+        }
 
-body{
-    font-family:'Orbitron', sans-serif;
-    background:#050712;
-    color:#fff;
-    overflow-x:hidden;
-    cursor:none;
-    -webkit-font-smoothing:antialiased;
-    position:relative;
-}
+        .site-logo img {
+            width: 72px;
+            height: auto;
+            transition: 0.3s ease;
+        }
 
-/* LOGO */
-.site-logo{
-    position:fixed;
-    top:12px;
-    left:12px;
-    z-index:10000;
-    display:inline-block;
-    text-decoration:none;
-    opacity:0.9;
-}
+        .site-logo img:hover {
+            transform: scale(1.05);
+        }
 
-.site-logo img{
-    width:72px;
-    height:auto;
-    object-fit:contain;
-    background:transparent;
-    transition:0.3s ease;
-    filter:brightness(1.05) contrast(1.08) drop-shadow(0 0 6px rgba(0,229,255,0.2));
-}
+        /* CURSOR */
+        .cursor {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00e5ff;
+            box-shadow: 0 0 10px #00e5ff, 0 0 20px #8a2be2;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 99999;
+        }
 
-.site-logo img:hover{
-    transform:scale(1.05);
-}
+        .cursor-ring {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(0, 229, 255, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 99998;
+            transition: 0.08s ease;
+        }
 
-/* CURSOR */
-.cursor{
-    position:fixed;
-    width:12px;
-    height:12px;
-    border-radius:50%;
-    background:#00e5ff;
-    box-shadow:0 0 10px #00e5ff, 0 0 20px #8a2be2;
-    pointer-events:none;
-    transform:translate(-50%,-50%);
-    z-index:99999;
-}
+        .cursor.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: #fff;
+            box-shadow: 0 0 15px #00e5ff, 0 0 30px #8a2be2;
+        }
 
-.cursor-ring{
-    position:fixed;
-    width:40px;
-    height:40px;
-    border:2px solid rgba(0,229,255,0.4);
-    border-radius:50%;
-    pointer-events:none;
-    transform:translate(-50%,-50%);
-    z-index:99998;
-    transition:0.08s ease;
-}
+        .cursor-ring.hover {
+            transform: translate(-50%, -50%) scale(1.4);
+            border-color: rgba(0, 229, 255, 0.9);
+        }
 
-.spark{
-    position:fixed;
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:#00e5ff;
-    pointer-events:none;
-    z-index:99997;
-    box-shadow:0 0 10px #00e5ff, 0 0 20px #8a2be2;
-    animation:sparkFly 0.6s linear forwards;
-}
+        /* BACKGROUND */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 25%, rgba(0, 229, 255, 0.15), transparent 40%),
+                radial-gradient(circle at 80% 30%, rgba(138, 43, 226, 0.12), transparent 40%),
+                radial-gradient(circle at 50% 85%, rgba(0, 255, 170, 0.08), transparent 50%);
+            z-index: -2;
+        }
 
-@keyframes sparkFly{
-    0%{opacity:1; transform:scale(1);}
-    100%{opacity:0; transform:translateY(-30px) scale(0);}
-}
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.2;
+            z-index: -1;
+        }
 
-.cursor.hover{
-    transform:translate(-50%,-50%) scale(1.5);
-    background:#fff;
-    box-shadow:0 0 15px #00e5ff, 0 0 30px #8a2be2;
-}
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1000px, calc(100% - 20px));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            z-index: 9997;
+            transition: 0.4s ease;
+            flex-wrap: wrap;
+        }
 
-.cursor-ring.hover{
-    transform:translate(-50%,-50%) scale(1.4);
-    border-color:rgba(0,229,255,0.9);
-}
+        .navbar.hide-nav {
+            transform: translateX(-50%) translateY(-130px);
+        }
 
-/* BACKGROUND */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-        radial-gradient(circle at 20% 25%, rgba(0,229,255,0.20), transparent 35%),
-        radial-gradient(circle at 80% 35%, rgba(138,43,226,0.18), transparent 35%),
-        radial-gradient(circle at 50% 80%, rgba(0,255,170,0.10), transparent 45%);
-    z-index:-2;
-    pointer-events:none;
-}
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
 
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-    background-size:70px 70px;
-    opacity:0.25;
-    z-index:-1;
-    pointer-events:none;
-}
+        .navbar a:hover {
+            color: #00e5ff;
+            text-shadow: 0 0 10px #00e5ff;
+        }
 
-/* NAVBAR */
-.navbar{
-    position:fixed;
-    top:15px;
-    left:50%;
-    transform:translateX(-50%);
-    width:min(1100px, calc(100% - 24px));
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    padding:15px 20px;
-    background:rgba(255,255,255,.05);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:16px;
-    z-index:9997;
-    transition:0.4s ease;
-    flex-wrap:wrap;
-    align-items:center;
-}
+        .navbar span {
+            color: #00e5ff;
+            opacity: 0.5;
+        }
 
-.navbar.hide-nav{
-    transform:translateX(-50%) translateY(-120px);
-}
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 20px 60px;
+        }
 
-.navbar a{
-    color:#fff;
-    text-decoration:none;
-    transition:.3s;
-    white-space:nowrap;
-}
+        .hero h1 {
+            font-size: clamp(2.2rem, 6vw, 3.6rem);
+            text-shadow: 0 0 25px #00e5ff;
+            line-height: 1.2;
+        }
 
-.navbar a:hover{
-    color:#00e5ff;
-    text-shadow:0 0 10px #00e5ff;
-}
+        .hero p {
+            margin-top: 18px;
+            color: #b8b8b8;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+        }
 
-.navbar span{
-    color:#00e5ff;
-    opacity:.6;
-}
+        .scroll {
+            position: absolute;
+            bottom: 30px;
+            color: #00e5ff;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            animation: blink 1.5s infinite;
+        }
 
-/* HERO */
-.hero{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    position:relative;
-    padding:120px 20px 60px;
-}
+        @keyframes blink {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
 
-.hero h1{
-    font-size:clamp(2rem, 5vw, 3.4rem);
-    text-shadow:0 0 20px #00e5ff;
-    line-height:1.2;
-}
+        /* SECTION */
+        .section {
+            padding: 90px 12%;
+        }
 
-.hero p{
-    margin-top:15px;
-    color:#b8b8b8;
-    font-size:clamp(0.85rem, 2.5vw, 1rem);
-}
+        .title {
+            font-size: 1.9rem;
+            margin-bottom: 35px;
+            color: #00e5ff;
+            text-shadow: 0 0 12px #00e5ff;
+            text-align: center;
+        }
 
-.scroll{
-    position:absolute;
-    bottom:25px;
-    color:#00e5ff;
-    font-size:0.9rem;
-    letter-spacing:2px;
-    animation:blink 1.5s infinite;
-}
+        /* BENEFITS GRID */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-@keyframes blink{
-    0%,100%{opacity:0.4;}
-    50%{opacity:1;}
-}
+        /* BENEFIT CARD */
+        .benefit-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(0, 229, 255, 0.03));
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 18px;
+            padding: 32px 28px;
+            text-align: center;
+            transition: 0.4s ease;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.08);
+        }
 
-/* SECTIONS */
-.section{
-    padding:80px 10%;
-    position:relative;
-    z-index:1;
-}
+        .benefit-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.25), 0 0 50px rgba(138, 43, 226, 0.15);
+            border-color: rgba(0, 229, 255, 0.4);
+        }
 
-.title{
-    font-size:1.7rem;
-    margin-bottom:20px;
-    color:#00e5ff;
-    text-shadow:0 0 10px #00e5ff;
-}
+        .benefit-icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            box-shadow: 0 0 18px rgba(0, 229, 255, 0.15);
+            font-size: 2rem;
+        }
 
-.grid,
-.benefits-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:20px;
-}
+        .benefit-card h3 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 14px;
+            text-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+        }
 
-/* CARD */
-.card{
-    background:rgba(255,255,255,0.04);
-    padding:20px;
-    border-radius:12px;
-    border:1px solid rgba(255,255,255,0.1);
-    transition:0.3s;
-    display:block;
-    text-decoration:none;
-    color:#fff;
-    cursor:none;
-}
+        .benefit-card p {
+            color: #d5d5d5;
+            line-height: 1.75;
+            font-size: 0.95rem;
+        }
 
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 0 20px rgba(0,229,255,0.3);
-}
+        /* CTA */
+        .cta-section {
+            padding: 70px 12%;
+        }
 
-.card .project-name{
-    font-size:1.1rem;
-    color:#00e5ff;
-    margin-bottom:10px;
-}
+        .cta {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            background: rgba(0, 229, 255, 0.06);
+            font-size: 1.4rem;
+            color: #00e5ff;
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+        }
 
-.card .visit-text{
-    color:#00e5ff;
-    font-size:0.9rem;
-}
+        /* Mobile */
+        @media (max-width: 768px) {
+            body { cursor: auto; }
+            .cursor, .cursor-ring { display: none; }
+            .site-logo img { width: 55px; }
+            .navbar {
+                top: 65px;
+                width: calc(100% - 14px);
+                gap: 10px;
+                padding: 10px 12px;
+            }
+            .navbar a { font-size: 0.75rem; }
+            .navbar span { display: none; }
+            .hero { padding: 150px 14px 50px; }
+            .hero h1 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+            .section { padding: 70px 8%; }
+            .title { font-size: 1.5rem; }
+            .benefits-grid { grid-template-columns: 1fr; gap: 20px; }
+            .benefit-card { padding: 26px 20px; }
+            .benefit-icon { width: 65px; height: 65px; font-size: 1.7rem; }
+            .benefit-card h3 { font-size: 1.1rem; }
+            .cta { font-size: 1.15rem; padding: 30px 20px; }
+        }
 
-.about-link{
-    display:block;
-    text-decoration:none;
-    color:#fff;
-}
-
-.about-link:hover .card{
-    transform:translateY(-6px);
-    box-shadow:0 0 20px rgba(0,229,255,0.3);
-}
-
-.services{
-    color:#cfcfcf;
-    line-height:1.8;
-}
-
-.cta{
-    margin-top:30px;
-    text-align:center;
-    padding:30px;
-    border-radius:12px;
-    border:1px solid rgba(0,229,255,0.2);
-    background:rgba(0,229,255,0.05);
-}
-
-/* BENEFITS */
-.benefit-card{
-    position:relative;
-    background:linear-gradient(145deg, rgba(255,255,255,0.06), rgba(0,229,255,0.04));
-    border:1px solid rgba(0,229,255,0.18);
-    border-radius:16px;
-    padding:24px 20px;
-    text-align:center;
-    overflow:hidden;
-    transition:0.35s ease;
-    box-shadow:
-        0 0 18px rgba(0,229,255,0.08),
-        inset 0 0 18px rgba(255,255,255,0.02);
-}
-
-.benefit-card::before{
-    content:"";
-    position:absolute;
-    inset:-2px;
-    border-radius:16px;
-    background:linear-gradient(135deg, rgba(0,229,255,0.45), rgba(138,43,226,0.25), rgba(0,229,255,0.15));
-    filter:blur(18px);
-    opacity:0;
-    transition:0.35s ease;
-    z-index:-1;
-}
-
-.benefit-card:hover{
-    transform:translateY(-8px) scale(1.02);
-    box-shadow:
-        0 0 22px rgba(0,229,255,0.22),
-        0 0 40px rgba(138,43,226,0.12);
-    border-color:rgba(0,229,255,0.35);
-}
-
-.benefit-card:hover::before{
-    opacity:1;
-}
-
-.benefit-icon{
-    width:64px;
-    height:64px;
-    margin:0 auto 14px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(0,229,255,0.18);
-    box-shadow:0 0 14px rgba(0,229,255,0.12);
-    font-size:1.7rem;
-}
-
-.benefit-card h3{
-    color:#fff;
-    font-size:1.05rem;
-    margin-bottom:10px;
-    text-shadow:0 0 10px rgba(0,229,255,0.2);
-}
-
-.benefit-card p{
-    color:#d0d0d0;
-    line-height:1.7;
-    font-size:0.94rem;
-}
-
-@media (max-width: 768px){
-    body{cursor:auto;}
-    .cursor, .cursor-ring, .spark{display:none;}
-    .site-logo img{width:60px;}
-    .navbar{
-        top:70px;
-        width:calc(100% - 16px);
-        gap:8px;
-        padding:10px 10px;
-    }
-    .navbar a{font-size:0.78rem;}
-    .navbar span{display:none;}
-    .hero{
-        padding:170px 16px 60px;
-    }
-    .hero h1{
-        font-size:clamp(1.8rem, 8vw, 2.6rem);
-    }
-    .section{
-        padding:65px 6%;
-    }
-    .grid,
-    .benefits-grid{
-        grid-template-columns:1fr;
-    }
-    .card{
-        cursor:pointer;
-    }
-}
-
-@media (max-width: 480px){
-    .site-logo{
-        top:8px;
-        left:8px;
-    }
-    .site-logo img{
-        width:50px;
-    }
-    .navbar{
-        top:62px;
-        width:calc(100% - 12px);
-        padding:8px 8px;
-        border-radius:14px;
-    }
-    .navbar a{
-        font-size:0.7rem;
-    }
-    .hero{
-        padding:155px 12px 50px;
-    }
-    .scroll{
-        font-size:0.75rem;
-        letter-spacing:1px;
-    }
-    .section{
-        padding:55px 5%;
-    }
-    .title{
-        font-size:1.3rem;
-    }
-    .card{
-        padding:16px;
-    }
-    .benefit-card{
-        padding:20px 16px;
-    }
-}
-</style>
+        @media (max-width: 480px) {
+            .site-logo { top: 8px; left: 8px; }
+            .site-logo img { width: 48px; }
+            .navbar { top: 58px; width: calc(100% - 10px); padding: 8px 10px; }
+            .navbar a { font-size: 0.68rem; }
+            .hero { padding: 140px 12px 45px; }
+            .hero h1 { font-size: clamp(1.6rem, 9vw, 2.4rem); }
+            .section { padding: 60px 6%; }
+            .title { font-size: 1.35rem; margin-bottom: 25px; }
+            .benefit-card { padding: 22px 18px; }
+            .benefit-icon { width: 60px; height: 60px; font-size: 1.5rem; margin-bottom: 16px; }
+            .benefit-card h3 { font-size: 1rem; margin-bottom: 10px; }
+            .benefit-card p { font-size: 0.88rem; }
+            .cta { font-size: 1.05rem; padding: 25px 18px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<a href="index.html" class="site-logo">
-    <img src="logo.png" alt="Aura Developers Logo">
-</a>
+    <!-- Background -->
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
 
-<nav class="navbar">
-    <a href="index.html">Home</a>
-    <span>/</span>
-    <a href="./3rd.html">Why We</a>
-    <span>/</span>
-    <a href="./benefits.html">Benefits</a>
-    <span>/</span>
-    <a href="./goal.html">Our Goal</a>
-    <span>/</span>
-    <a href="./about.html">About Us</a>
-    <span>/</span>
-    <a href="contact.html">Contact</a>
-    <span>/</span>
-    <a href="apply.html">Apply</a>
-</nav>
+    <!-- Logo -->
+    <a href="index.html" class="site-logo">
+        <img src="logo.png" alt="Aura Developers Logo">
+    </a>
 
-<div class="cursor"></div>
-<div class="cursor-ring"></div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="3rd.html">Why We</a>
+        <span>/</span>
+        <a href="goal.html">Our Goal</a>
+        <span>/</span>
+        <a href="about.html">About Us</a>
+        <span>/</span>
+        <a href="contact.html">Contact</a>
+        <span>/</span>
+        <a href="apply.html">Apply</a>
+        <span>/</span>
+        <a href="benefits.html">Benefits</a>
+    </nav>
 
-<div class="hero" id="home">
-    <h1>WELCOME TO AURA DEVELOPER</h1>
-    <p>WE BUILD MODERN WEBSITES THAT ACTUALLY RUN</p>
-    <div class="scroll">SCROLL DOWN ↓</div>
-</div>
+    <!-- Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-ring"></div>
 
-<div class="section" id="why">
-    <div class="title">WHY CHOOSE US</div>
-    <div class="grid">
-        <div class="card">⚡ Fast Websites</div>
-        <div class="card">🎨 Modern UI Design</div>
-        <div class="card">📱 Fully Responsive</div>
-        <div class="card">🚀 Real Working Projects</div>
+    <!-- Hero -->
+    <div class="hero">
+        <h1>BENEFITS</h1>
+        <p>WHY CHOOSE AURA DEVELOPER</p>
+        <div class="scroll">SCROLL DOWN ↓</div>
     </div>
-</div>
 
-<div class="section" id="benefits">
-    <div class="title">BENEFITS</div>
-    <div class="benefits-grid">
-        <div class="benefit-card">
-            <div class="benefit-icon">✅</div>
-            <h3>1 Month Free Updates</h3>
-            <p>Website banne ke baad 1 month tak free updates milenge, taaki aapko extra tension na ho.</p>
-        </div>
-
-        <div class="benefit-card">
-            <div class="benefit-icon">💸</div>
-            <h3>Affordable Price</h3>
-            <p>Market price se kam rate me professional website banayi jayegi, quality ke saath.</p>
-        </div>
-
-        <div class="benefit-card">
-            <div class="benefit-icon">⚡</div>
-            <h3>Fast Delivery</h3>
-            <p>Deadline se pehle website ready karne ki koshish ki jayegi, jaldi aur efficiently.</p>
-        </div>
-
-        <div class="benefit-card">
-            <div class="benefit-icon">🚀</div>
-            <h3>Professional Look</h3>
-            <p>Har website ko modern, clean aur premium feel ke saath design kiya jayega.</p>
-        </div>
-    </div>
-</div>
-
-<div class="section" id="works">
-    <div class="title">OUR WORKS</div>
-    <div class="grid">
-        <a href="https://top-players.github.io/old-legends/" class="card" target="_blank" rel="noopener noreferrer">
-            <div class="project-name">Project 1</div>
-            <div class="visit-text">→ Visit</div>
-        </a>
-
-        <a href="https://top-players.github.io/STUDY-ZONE/" class="card" target="_blank" rel="noopener noreferrer">
-            <div class="project-name">Project 2</div>
-            <div class="visit-text">→ Visit</div>
-        </a>
-
-        <a href="./about.html" class="about-link">
-            <div class="card">
-                <div class="project-name">About Us</div>
-                <div class="visit-text">→ Open Page</div>
+    <!-- Benefits Section -->
+    <div class="section">
+        <div class="title">WHAT WE OFFER</div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">✅</div>
+                <h3>1 Month Free Updates</h3>
+                <p>Website banne ke baad 1 month tak free updates milenge, taaki aapko extra tension na ho.</p>
             </div>
-        </a>
-
-        <div class="card">
-            <div class="project-name">More Projects</div>
-            <div class="visit-text">🔜 Coming Soon</div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💸</div>
+                <h3>Affordable Price</h3>
+                <p>Market price se kam rate me professional website banayi jayegi, quality ke saath.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Fast Delivery</h3>
+                <p>Deadline se pehle website ready karne ki koshish ki jayegi, jaldi aur efficiently.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🚀</div>
+                <h3>Professional Look</h3>
+                <p>Har website ko modern, clean aur premium feel ke saath design kiya jayega.</p>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="section" id="goal">
-    <div class="title">WHAT WE BUILD</div>
-    <div class="services">
-        We build landing sites, business websites, trading platforms, commercial websites, advertisement pages, greeting sites, portfolio pages and many more digital experiences.
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <div class="cta">
+            🚀 LET'S BUILD SOMETHING AMAZING TOGETHER
+        </div>
     </div>
-    <div class="cta" id="contact">
-        🚀 LET'S BUILD SOMETHING AMAZING TOGETHER
-    </div>
-</div>
 
-<script>
-const cursor = document.querySelector(".cursor");
-const ring = document.querySelector(".cursor-ring");
-const isTouch = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
+    <!-- Script -->
+    <script>
+        const cursor = document.querySelector(".cursor");
+        const ring = document.querySelector(".cursor-ring");
+        const isTouch = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
 
-if(!isTouch){
-    document.addEventListener("mousemove",(e)=>{
-        const x = e.clientX;
-        const y = e.clientY;
+        if (!isTouch) {
+            document.addEventListener("mousemove", (e) => {
+                const x = e.clientX;
+                const y = e.clientY;
+                cursor.style.left = x + "px";
+                cursor.style.top = y + "px";
+                ring.style.left = x + "px";
+                ring.style.top = y + "px";
+            });
 
-        cursor.style.left = x + "px";
-        cursor.style.top = y + "px";
-        ring.style.left = x + "px";
-        ring.style.top = y + "px";
+            document.querySelectorAll(".navbar a, .benefit-card, .scroll, .cta").forEach(el => {
+                el.addEventListener("mouseenter", () => {
+                    cursor.classList.add("hover");
+                    ring.classList.add("hover");
+                });
+                el.addEventListener("mouseleave", () => {
+                    cursor.classList.remove("hover");
+                    ring.classList.remove("hover");
+                });
+            });
 
-        const spark = document.createElement("div");
-        spark.className = "spark";
-        spark.style.left = x + "px";
-        spark.style.top = y + "px";
-        document.body.appendChild(spark);
-
-        setTimeout(()=> spark.remove(), 600);
-    });
-
-    document.querySelectorAll(".navbar a, .card, .scroll, .cta, .about-link, .benefit-card").forEach(el => {
-        el.addEventListener("mouseenter", () => {
-            cursor.classList.add("hover");
-            ring.classList.add("hover");
-        });
-        el.addEventListener("mouseleave", () => {
-            cursor.classList.remove("hover");
-            ring.classList.remove("hover");
-        });
-    });
-
-    const navbar = document.querySelector(".navbar");
-    let lastScroll = 0;
-
-    window.addEventListener("scroll", () => {
-        const currentScroll = window.pageYOffset;
-        if (currentScroll > lastScroll) {
-            navbar.classList.add("hide-nav");
-        } else {
-            navbar.classList.remove("hide-nav");
+            const navbar = document.querySelector(".navbar");
+            let lastScroll = 0;
+            window.addEventListener("scroll", () => {
+                const currentScroll = window.pageYOffset;
+                if (currentScroll > lastScroll) {
+                    navbar.classList.add("hide-nav");
+                } else {
+                    navbar.classList.remove("hide-nav");
+                }
+                lastScroll = currentScroll;
+            });
         }
-        lastScroll = currentScroll;
-    });
-}
-</script>
+    </script>
 
 </body>
 </html>
