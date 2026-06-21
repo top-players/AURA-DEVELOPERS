@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply - Aura Developer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+html, body{
+    width:100%;
+    min-height:100%;
+}
+body{
+    font-family:'Orbitron', sans-serif;
+    background:#050712;
+    color:#fff;
+    overflow-x:hidden;
+    position:relative;
+    cursor:none;
+    -webkit-font-smoothing:antialiased;
+}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(0,229,255,0.22), transparent 35%),
+        radial-gradient(circle at 80% 30%, rgba(138,43,226,0.18), transparent 38%),
+        radial-gradient(circle at 50% 80%, rgba(0,255,170,0.10), transparent 45%);
+    z-index:-2;
+    pointer-events:none;
+    animation:bgPulse 10s ease-in-out infinite;
+}
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size:70px 70px;
+    opacity:0.18;
+    z-index:-1;
+    pointer-events:none;
+}
+@keyframes bgPulse{
+    0%,100%{filter:brightness(1);}
+    50%{filter:brightness(1.1);}
+}
+
+/* CURSOR */
+.cursor{
+    position:fixed;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#00e5ff;
+    box-shadow:0 0 10px #00e5ff, 0 0 20px #8a2be2;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    z-index:99999;
+}
+.cursor-ring{
+    position:fixed;
+    width:40px;
+    height:40px;
+    border:2px solid rgba(0,229,255,0.4);
+    border-radius:50%;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    z-index:99998;
+    transition:0.08s ease;
+}
+.spark{
+    position:fixed;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#00e5ff;
+    pointer-events:none;
+    z-index:99997;
+    box-shadow:0 0 10px #00e5ff, 0 0 20px #8a2be2;
+    animation:sparkFly 0.6s linear forwards;
+}
+@keyframes sparkFly{
+    0%{opacity:1; transform:scale(1);}
+    100%{opacity:0; transform:translateY(-30px) scale(0);}
+}
+.cursor.hover{
+    transform:translate(-50%,-50%) scale(1.5);
+    background:#fff;
+    box-shadow:0 0 15px #00e5ff, 0 0 30px #8a2be2;
+}
+.cursor-ring.hover{
+    transform:translate(-50%,-50%) scale(1.4);
+    border-color:rgba(0,229,255,0.9);
+}
+
+/* LOGO */
+.site-logo{
+    position:fixed;
+    top:12px;
+    left:12px;
+    z-index:10000;
+    display:inline-block;
+    text-decoration:none;
+}
+.site-logo img{
+    width:72px;
+    height:auto;
+    object-fit:contain;
+    transition:0.3s ease;
+    filter:brightness(1.05) contrast(1.08) drop-shadow(0 0 6px rgba(0,229,255,0.2));
+}
+.site-logo img:hover{
+    transform:scale(1.05);
+}
+
+/* NAV */
+.navbar{
+    position:fixed;
+    top:15px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+    max-width:1100px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    padding:15px 20px;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;
+    z-index:9997;
+    flex-wrap:wrap;
+}
+.navbar a{
+    color:#fff;
+    text-decoration:none;
+    transition:.3s;
+}
+.navbar a:hover{
+    color:#00e5ff;
+    text-shadow:0 0 10px #00e5ff;
+}
+.navbar span{
+    color:#00e5ff;
+    opacity:.6;
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 20px 40px;
+}
+.hero-content{
+    max-width:1100px;
+}
+.big-title{
+    font-size:clamp(2.5rem, 7vw, 6rem);
+    letter-spacing:6px;
+    color:#fff;
+    text-shadow:
+        0 0 12px rgba(0,229,255,0.9),
+        0 0 30px rgba(0,229,255,0.55),
+        0 0 55px rgba(138,43,226,0.45);
+    margin-bottom:16px;
+    animation:floatText 4s ease-in-out infinite;
+}
+.sub-title{
+    font-size:1rem;
+    letter-spacing:3px;
+    color:#b8b8b8;
+    line-height:1.8;
+    margin:0 auto 16px;
+    max-width:900px;
+}
+.line{
+    width:180px;
+    height:3px;
+    background:linear-gradient(90deg, #00e5ff, #8a2be2);
+    margin:0 auto 34px;
+    border-radius:999px;
+    box-shadow:0 0 18px rgba(0,229,255,0.5);
+    animation:lineGlow 2s ease-in-out infinite;
+}
+@keyframes floatText{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-6px);}
+}
+@keyframes lineGlow{
+    0%,100%{opacity:0.7; transform:scaleX(1);}
+    50%{opacity:1; transform:scaleX(1.05);}
+}
+
+/* CARDS */
+.section{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 10% 90px;
+}
+.section-box{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:18px;
+    padding:28px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 30px rgba(0,0,0,0.25);
+}
+.section-box h2{
+    color:#00e5ff;
+    font-size:1.8rem;
+    margin-bottom:10px;
+}
+.section-box p{
+    color:#d5d5d5;
+    line-height:1.9;
+    margin-bottom:18px;
+}
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+    margin-top:20px;
+}
+.apply-card{
+    display:block;
+    text-decoration:none;
+    color:#fff;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:16px;
+    padding:18px;
+    min-height:145px;
+    transition:0.3s ease;
+    position:relative;
+    overflow:hidden;
+}
+.apply-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg, rgba(0,229,255,0.14), transparent 40%, rgba(138,43,226,0.12));
+    opacity:0;
+    transition:0.3s ease;
+}
+.apply-card:hover{
+    transform:translateY(-6px) scale(1.02);
+    box-shadow:0 0 20px rgba(0,229,255,0.2);
+    border-color:rgba(0,229,255,0.35);
+}
+.apply-card:hover::before{
+    opacity:1;
+}
+.apply-card i{
+    font-size:1.9rem;
+    color:#00e5ff;
+    margin-bottom:12px;
+    position:relative;
+    z-index:1;
+}
+.apply-card h3{
+    font-size:1rem;
+    margin-bottom:8px;
+    position:relative;
+    z-index:1;
+}
+.apply-card small{
+    display:block;
+    color:#bdbdbd;
+    line-height:1.6;
+    position:relative;
+    z-index:1;
+}
+.note{
+    margin-top:22px;
+    padding:16px;
+    border-left:4px solid #00e5ff;
+    background:rgba(0,229,255,0.05);
+    color:#d9d9d9;
+    line-height:1.8;
+}
+
+/* FOOTER */
+.footer-actions{
+    margin-top:22px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:14px 18px;
+    border-radius:12px;
+    text-decoration:none;
+    color:#fff;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    transition:0.3s ease;
+}
+.back-btn:hover{
+    transform:translateY(-3px);
+    border-color:rgba(0,229,255,0.35);
+    box-shadow:0 0 16px rgba(0,229,255,0.15);
+}
+
+@media (max-width:768px){
+    .big-title{
+        letter-spacing:2px;
+    }
+    .sub-title{
+        font-size:0.92rem;
+        letter-spacing:1px;
+    }
+    .section-box{
+        padding:22px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<a href="index.html" class="site-logo">
+    <img src="logo.png" alt="Aura Developers Logo">
+</a>
+
+<nav class="navbar">
+    <a href="index.html">Home</a>
+    <span>/</span>
+    <a href="./3rd.html">Why We</a>
+    <span>/</span>
+    <a href="works.html">Our Works</a>
+    <span>/</span>
+    <a href="./goal.html">Our Goal</a>
+    <span>/</span>
+    <a href="./about.html">About Us</a>
+    <span>/</span>
+    <a href="./contact.html">Contact</a>
+    <span>/</span>
+    <a href="apply.html">Apply</a>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="big-title">APPLY NOW</div>
+        <div class="sub-title">CHOOSE THE TYPE OF WEBSITE YOU WANT TO BUILD</div>
+        <div class="line"></div>
+    </div>
+</section>
+
+<div class="section">
+    <div class="section-box">
+        <h2>Choose Your Website Type</h2>
+        <p>
+            Click any card below and WhatsApp will open automatically with a prefilled message.
+            We added your name into the message format.
+        </p>
+
+        <div class="card-grid">
+            <a class="apply-card" href="#" data-type="College Showcase Site">
+                <i class="fa-solid fa-building-columns"></i>
+                <h3>College Showcase Sites</h3>
+                <small>For colleges, institutions, admissions, and campus presentation.</small>
+            </a>
+
+            <a class="apply-card" href="#" data-type="School Website">
+                <i class="fa-solid fa-school"></i>
+                <h3>School Sites</h3>
+                <small>For schools, academies, education branding, and parent info.</small>
+            </a>
+
+            <a class="apply-card" href="#" data-type="Buying / Selling Website">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <h3>Buying / Selling Sites</h3>
+                <small>For online product listings, selling pages, and marketplace style sites.</small>
+            </a>
+
+            <a class="apply-card" href="#" data-type="Quick Website">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Quick Sites</h3>
+                <small>For fast landing pages, simple business needs, and urgent setups.</small>
+            </a>
+
+            <a class="apply-card" href="#" data-type="Notes Website">
+                <i class="fa-solid fa-book-open"></i>
+                <h3>Notes Sites</h3>
+                <small>For notes, study material, PDFs, and student content.</small>
+            </a>
+
+            <a class="apply-card" href="#" data-type="Library Management System">
+                <i class="fa-solid fa-book"></i>
+                <h3>Library Management System</h3>
+                <small>For book management, issue/return system, and library tracking.</small>
+            </a>
+
+            <a class="apply-card" href="#" data-type="Small Business Website">
+                <i class="fa-solid fa-briefcase"></i>
+                <h3>Small Business Websites</h3>
+                <small>For local shops, startups, service brands, and professional business pages.</small>
+            </a>
+
+            <a class="apply-card" href="#" data-type="Coaching / Institute Website">
+                <i class="fa-solid fa-user-graduate"></i>
+                <h3>Coaching / Institutes Sites</h3>
+                <small>For coaching centers, tuition classes, and training institutes.</small>
+            </a>
+
+            <a class="apply-card" href="#" data-type="Restaurant Website">
+                <i class="fa-solid fa-utensils"></i>
+                <h3>Restaurant Websites</h3>
+                <small>For menus, table booking, food branding, and restaurant promotion.</small>
+            </a>
+
+            <a class="apply-card" href="#" data-type="Ads Handling Pages">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Handling Pages for Ads</h3>
+                <small>For ad landing pages, lead generation pages, and campaign funnels.</small>
+            </a>
+        </div>
+
+        <div class="note">
+            When you click a card, the page will open WhatsApp with this format:
+            “Hello, I want this type of website: [selected type]. My name is [user name].”
+        </div>
+
+        <div class="footer-actions">
+            <a href="contact.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i>
+                Go to Contact Page
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+const cursor = document.querySelector(".cursor");
+const ring = document.querySelector(".cursor-ring");
+
+document.addEventListener("mousemove",(e)=>{
+    const x = e.clientX;
+    const y = e.clientY;
+
+    cursor.style.left = x + "px";
+    cursor.style.top = y + "px";
+    ring.style.left = x + "px";
+    ring.style.top = y + "px";
+
+    const spark = document.createElement("div");
+    spark.className = "spark";
+    spark.style.left = x + "px";
+    spark.style.top = y + "px";
+    document.body.appendChild(spark);
+
+    setTimeout(()=> spark.remove(), 600);
+});
+
+document.querySelectorAll("a, .apply-card, .section-box").forEach(el => {
+    el.addEventListener("mouseenter", () => {
+        cursor.classList.add("hover");
+        ring.classList.add("hover");
+    });
+    el.addEventListener("mouseleave", () => {
+        cursor.classList.remove("hover");
+        ring.classList.remove("hover");
+    });
+});
+
+function getUserName(){
+    let name = prompt("Enter your name:");
+    if(!name || !name.trim()) name = "Client";
+    return name.trim();
+}
+
+document.querySelectorAll(".apply-card").forEach(card => {
+    card.addEventListener("click", function(e){
+        e.preventDefault();
+        const type = this.getAttribute("data-type");
+        const name = getUserName();
+        const message = `Hello, I want this type of website: ${type}. My name is ${name}.`;
+        const phone = "919259129530";
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+        window.open(url, "_blank");
+    });
+});
+</script>
+
+</body>
+</html>

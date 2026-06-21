@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Goal - Aura Developer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    font-family:'Orbitron', sans-serif;
+    background:#050712;
+    color:#fff;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    cursor:none;
+}
+
+/* BACKGROUND */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(0,229,255,0.22), transparent 35%),
+        radial-gradient(circle at 80% 30%, rgba(138,43,226,0.18), transparent 38%),
+        radial-gradient(circle at 50% 80%, rgba(0,255,170,0.10), transparent 45%);
+    z-index:-2;
+    pointer-events:none;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size:70px 70px;
+    opacity:0.18;
+    z-index:-1;
+    pointer-events:none;
+}
+
+/* CURSOR */
+.cursor{
+    position:fixed;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#00e5ff;
+    box-shadow:0 0 10px #00e5ff, 0 0 20px #8a2be2;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    z-index:99999;
+}
+
+.cursor-ring{
+    position:fixed;
+    width:40px;
+    height:40px;
+    border:2px solid rgba(0,229,255,0.4);
+    border-radius:50%;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    z-index:99998;
+    transition:0.08s ease;
+}
+
+.spark{
+    position:fixed;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#00e5ff;
+    pointer-events:none;
+    z-index:99997;
+    box-shadow:0 0 10px #00e5ff, 0 0 20px #8a2be2;
+    animation:sparkFly 0.6s linear forwards;
+}
+
+@keyframes sparkFly{
+    0%{opacity:1; transform:scale(1);}
+    100%{opacity:0; transform:translateY(-30px) scale(0);}
+}
+
+.cursor.hover{
+    transform:translate(-50%,-50%) scale(1.5);
+    background:#fff;
+    box-shadow:0 0 15px #00e5ff, 0 0 30px #8a2be2;
+}
+
+.cursor-ring.hover{
+    transform:translate(-50%,-50%) scale(1.4);
+    border-color:rgba(0,229,255,0.9);
+}
+
+/* LOGO */
+.site-logo{
+    position:fixed;
+    top:12px;
+    left:12px;
+    z-index:10000;
+    display:inline-block;
+    text-decoration:none;
+}
+
+.site-logo img{
+    width:72px;
+    height:auto;
+    object-fit:contain;
+    transition:0.3s ease;
+    filter:brightness(1.05) contrast(1.08) drop-shadow(0 0 6px rgba(0,229,255,0.2));
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 20px 60px;
+}
+
+.hero-content{
+    max-width:1100px;
+}
+
+.big-title{
+    font-size:clamp(3rem, 8vw, 7rem);
+    letter-spacing:8px;
+    color:#fff;
+    text-shadow:
+        0 0 12px rgba(0,229,255,0.9),
+        0 0 30px rgba(0,229,255,0.55),
+        0 0 55px rgba(138,43,226,0.45);
+    margin-bottom:18px;
+}
+
+.sub-title{
+    font-size:1rem;
+    letter-spacing:4px;
+    color:#b8b8b8;
+    margin-bottom:30px;
+}
+
+.line{
+    width:160px;
+    height:3px;
+    background:linear-gradient(90deg, #00e5ff, #8a2be2);
+    margin:0 auto 40px;
+    border-radius:999px;
+    box-shadow:0 0 18px rgba(0,229,255,0.5);
+}
+
+/* GOAL BLOCKS */
+.goal-list{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+    align-items:center;
+    justify-content:center;
+}
+
+.goal-item{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+    text-align:center;
+}
+
+.goal-text{
+    font-size:clamp(2rem, 6vw, 5rem);
+    font-weight:900;
+    letter-spacing:3px;
+    color:#fff;
+    text-shadow:0 0 18px rgba(0,229,255,0.45);
+}
+
+.crossmark{
+    position:relative;
+    width:70px;
+    height:70px;
+    flex:0 0 auto;
+    filter:drop-shadow(0 0 10px rgba(255,80,80,0.6));
+}
+
+.crossmark::before,
+.crossmark::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:90px;
+    height:10px;
+    background:#ff4d4d;
+    border-radius:999px;
+    transform-origin:center;
+    box-shadow:0 0 16px rgba(255,77,77,0.8);
+}
+
+.crossmark::before{
+    transform:translate(-50%,-50%) rotate(45deg);
+}
+
+.crossmark::after{
+    transform:translate(-50%,-50%) rotate(-45deg);
+}
+
+.checkmark{
+    position:relative;
+    width:70px;
+    height:70px;
+    flex:0 0 auto;
+    filter:drop-shadow(0 0 10px rgba(90,255,140,0.7));
+}
+
+.checkmark::before{
+    content:"";
+    position:absolute;
+    left:22px;
+    top:8px;
+    width:24px;
+    height:50px;
+    border-right:10px solid #5aff8c;
+    border-bottom:10px solid #5aff8c;
+    transform:rotate(45deg);
+    border-radius:2px;
+    box-shadow:0 0 16px rgba(90,255,140,0.8);
+}
+
+/* DETAILS */
+.details{
+    padding:30px 10% 90px;
+}
+
+.details-box{
+    max-width:1100px;
+    margin:0 auto;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:18px;
+    padding:30px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 30px rgba(0,0,0,0.25);
+}
+
+.details-box h2{
+    color:#00e5ff;
+    margin-bottom:14px;
+    font-size:1.5rem;
+}
+
+.details-box p{
+    color:#d0d0d0;
+    line-height:1.8;
+    font-size:1rem;
+    margin-bottom:16px;
+}
+
+@media (max-width:768px){
+    .big-title{
+        letter-spacing:4px;
+    }
+
+    .goal-text{
+        letter-spacing:1px;
+    }
+
+    .crossmark,
+    .checkmark{
+        transform:scale(0.85);
+    }
+
+    .details-box{
+        padding:22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<a href="index.html" class="site-logo">
+    <img src="logo.png" alt="Aura Developers Logo">
+</a>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="big-title">OUR GOAL</div>
+        <div class="sub-title">WHAT WE STAND FOR</div>
+        <div class="line"></div>
+
+        <div class="goal-list">
+            <div class="goal-item">
+                <div class="goal-text">TO EARN PROFIT</div>
+                <div class="crossmark" aria-hidden="true"></div>
+            </div>
+
+            <div class="goal-item">
+                <div class="goal-text">TO BUILD TRUST</div>
+                <div class="checkmark" aria-hidden="true"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="details">
+    <div class="details-box">
+        <h2>OUR PURPOSE</h2>
+        <p>
+            At Aura Developer, our goal is not just to create websites, but to build digital experiences that help brands grow with purpose.
+            We believe a website should do more than look attractive — it should communicate clearly, perform smoothly, and leave a lasting impression on every visitor.
+            From the first idea to the final launch, we focus on quality, creativity, and attention to detail so every project feels professional and reliable.
+        </p>
+
+        <p>
+            We want our work to create real value for businesses by turning visitors into customers and clients into long-term partners.
+            Profit is important, but trust is the real foundation of success, and we build every project with that mindset.
+            Our aim is to deliver modern, responsive, and meaningful designs that reflect confidence, strengthen brand identity, and support long-term growth.
+        </p>
+    </div>
+</section>
+
+<script>
+const cursor = document.querySelector(".cursor");
+const ring = document.querySelector(".cursor-ring");
+
+document.addEventListener("mousemove",(e)=>{
+    const x = e.clientX;
+    const y = e.clientY;
+
+    cursor.style.left = x + "px";
+    cursor.style.top = y + "px";
+    ring.style.left = x + "px";
+    ring.style.top = y + "px";
+
+    const spark = document.createElement("div");
+    spark.className = "spark";
+    spark.style.left = x + "px";
+    spark.style.top = y + "px";
+    document.body.appendChild(spark);
+
+    setTimeout(()=> spark.remove(), 600);
+});
+
+document.querySelectorAll("a, .goal-item, .details-box").forEach(el => {
+    el.addEventListener("mouseenter", () => {
+        cursor.classList.add("hover");
+        ring.classList.add("hover");
+    });
+    el.addEventListener("mouseleave", () => {
+        cursor.classList.remove("hover");
+        ring.classList.remove("hover");
+    });
+});
+</script>
+
+</body>
+</html>

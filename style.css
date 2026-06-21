@@ -1,0 +1,32 @@
+*{
+    cursor:none; /* hide default cursor */
+}
+
+.cursor{
+    position:fixed;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#00e5ff;
+    box-shadow:
+        0 0 10px #00e5ff,
+        0 0 25px #8a2be2;
+
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    z-index:99999;
+}
+
+.cursor-ring{
+    position:fixed;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:2px solid rgba(0,229,255,0.4);
+
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    z-index:99998;
+
+    transition:0.08s ease;
+}
