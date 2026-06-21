@@ -17,6 +17,7 @@
 html, body{
     width:100%;
     min-height:100%;
+    overflow-x:hidden;
 }
 
 body{
@@ -132,14 +133,13 @@ body::after{
     pointer-events:none;
 }
 
+/* NAVBAR */
 .navbar{
-    position:sticky;
-    top:0;
-    left:0;
-    transform:none;
-    width:100%;
-    max-width:1100px;
-    margin:0 auto;
+    position:fixed;
+    top:15px;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(1100px, calc(100% - 24px));
     display:flex;
     justify-content:center;
     gap:20px;
@@ -149,6 +149,9 @@ body::after{
     border:1px solid rgba(255,255,255,.08);
     border-radius:16px;
     z-index:9997;
+    transition:0.4s ease;
+    flex-wrap:wrap;
+    align-items:center;
 }
 
 .navbar.hide-nav{
@@ -159,6 +162,7 @@ body::after{
     color:#fff;
     text-decoration:none;
     transition:.3s;
+    white-space:nowrap;
 }
 
 .navbar a:hover{
@@ -186,11 +190,13 @@ body::after{
 .hero h1{
     font-size:clamp(2rem, 5vw, 3.4rem);
     text-shadow:0 0 20px #00e5ff;
+    line-height:1.2;
 }
 
 .hero p{
     margin-top:15px;
     color:#b8b8b8;
+    font-size:clamp(0.85rem, 2.5vw, 1rem);
 }
 
 .scroll{
@@ -280,6 +286,100 @@ body::after{
     border:1px solid rgba(0,229,255,0.2);
     background:rgba(0,229,255,0.05);
 }
+
+@media (max-width: 768px){
+    body{
+        cursor:auto;
+    }
+
+    .cursor,
+    .cursor-ring,
+    .spark{
+        display:none;
+    }
+
+    .site-logo img{
+        width:60px;
+    }
+
+    .navbar{
+        top:70px;
+        width:calc(100% - 16px);
+        gap:8px;
+        padding:10px 10px;
+    }
+
+    .navbar a{
+        font-size:0.78rem;
+    }
+
+    .navbar span{
+        display:none;
+    }
+
+    .hero{
+        padding:170px 16px 60px;
+    }
+
+    .hero h1{
+        font-size:clamp(1.8rem, 8vw, 2.6rem);
+    }
+
+    .section{
+        padding:65px 6%;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        cursor:pointer;
+    }
+}
+
+@media (max-width: 480px){
+    .site-logo{
+        top:8px;
+        left:8px;
+    }
+
+    .site-logo img{
+        width:50px;
+    }
+
+    .navbar{
+        top:62px;
+        width:calc(100% - 12px);
+        padding:8px 8px;
+        border-radius:14px;
+    }
+
+    .navbar a{
+        font-size:0.7rem;
+    }
+
+    .hero{
+        padding:155px 12px 50px;
+    }
+
+    .scroll{
+        font-size:0.75rem;
+        letter-spacing:1px;
+    }
+
+    .section{
+        padding:55px 5%;
+    }
+
+    .title{
+        font-size:1.3rem;
+    }
+
+    .card{
+        padding:16px;
+    }
+}
 </style>
 </head>
 
@@ -329,6 +429,7 @@ body::after{
             <div class="project-name">Project 1</div>
             <div class="visit-text">→ Visit</div>
         </a>
+
         <a href="https://top-players.github.io/STUDY-ZONE/" class="card" target="_blank" rel="noopener noreferrer">
             <div class="project-name">Project 2</div>
             <div class="visit-text">→ Visit</div>
@@ -361,48 +462,51 @@ body::after{
 <script>
 const cursor = document.querySelector(".cursor");
 const ring = document.querySelector(".cursor-ring");
+const isTouch = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
 
-document.addEventListener("mousemove",(e)=>{
-    const x = e.clientX;
-    const y = e.clientY;
+if(!isTouch){
+    document.addEventListener("mousemove",(e)=>{
+        const x = e.clientX;
+        const y = e.clientY;
 
-    cursor.style.left = x + "px";
-    cursor.style.top = y + "px";
-    ring.style.left = x + "px";
-    ring.style.top = y + "px";
+        cursor.style.left = x + "px";
+        cursor.style.top = y + "px";
+        ring.style.left = x + "px";
+        ring.style.top = y + "px";
 
-    const spark = document.createElement("div");
-    spark.className = "spark";
-    spark.style.left = x + "px";
-    spark.style.top = y + "px";
-    document.body.appendChild(spark);
+        const spark = document.createElement("div");
+        spark.className = "spark";
+        spark.style.left = x + "px";
+        spark.style.top = y + "px";
+        document.body.appendChild(spark);
 
-    setTimeout(()=> spark.remove(), 600);
-});
-
-document.querySelectorAll(".navbar a, .card, .scroll, .cta, .about-link").forEach(el => {
-    el.addEventListener("mouseenter", () => {
-        cursor.classList.add("hover");
-        ring.classList.add("hover");
+        setTimeout(()=> spark.remove(), 600);
     });
-    el.addEventListener("mouseleave", () => {
-        cursor.classList.remove("hover");
-        ring.classList.remove("hover");
+
+    document.querySelectorAll(".navbar a, .card, .scroll, .cta, .about-link").forEach(el => {
+        el.addEventListener("mouseenter", () => {
+            cursor.classList.add("hover");
+            ring.classList.add("hover");
+        });
+        el.addEventListener("mouseleave", () => {
+            cursor.classList.remove("hover");
+            ring.classList.remove("hover");
+        });
     });
-});
 
-let lastScroll = 0;
-const navbar = document.querySelector(".navbar");
+    const navbar = document.querySelector(".navbar");
+    let lastScroll = 0;
 
-window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset;
-    if (currentScroll > lastScroll) {
-        navbar.classList.add("hide-nav");
-    } else {
-        navbar.classList.remove("hide-nav");
-    }
-    lastScroll = currentScroll;
-});
+    window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > lastScroll) {
+            navbar.classList.add("hide-nav");
+        } else {
+            navbar.classList.remove("hide-nav");
+        }
+        lastScroll = currentScroll;
+    });
+}
 </script>
 
 </body>
