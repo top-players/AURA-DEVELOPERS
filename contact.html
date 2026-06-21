@@ -19,6 +19,7 @@ html, body{
     width:100%;
     min-height:100%;
     scroll-behavior:smooth;
+    overflow-x:hidden;
 }
 
 body{
@@ -143,8 +144,7 @@ body::after{
     top:15px;
     left:50%;
     transform:translateX(-50%);
-    width:90%;
-    max-width:1100px;
+    width:min(1100px, calc(100% - 24px));
     display:flex;
     justify-content:center;
     gap:20px;
@@ -154,12 +154,15 @@ body::after{
     border:1px solid rgba(255,255,255,.08);
     border-radius:16px;
     z-index:9997;
+    flex-wrap:wrap;
+    align-items:center;
 }
 
 .navbar a{
     color:#fff;
     text-decoration:none;
     transition:.3s;
+    white-space:nowrap;
 }
 
 .navbar a:hover{
@@ -187,8 +190,8 @@ body::after{
 }
 
 .big-title{
-    font-size:clamp(2.4rem, 6.5vw, 5.5rem);
-    letter-spacing:5px;
+    font-size:clamp(2.2rem, 6vw, 5.5rem);
+    letter-spacing:clamp(1px, 0.5vw, 5px);
     color:#fff;
     text-shadow:
         0 0 12px rgba(0,229,255,0.9),
@@ -200,8 +203,8 @@ body::after{
 }
 
 .sub-title{
-    font-size:1rem;
-    letter-spacing:2px;
+    font-size:clamp(0.85rem, 2.2vw, 1rem);
+    letter-spacing:clamp(1px, 0.35vw, 2px);
     color:#b8b8b8;
     max-width:980px;
     margin:0 auto 16px;
@@ -210,7 +213,7 @@ body::after{
 }
 
 .line{
-    width:180px;
+    width:min(180px, 42vw);
     height:3px;
     background:linear-gradient(90deg, #00e5ff, #8a2be2);
     margin:0 auto 40px;
@@ -282,16 +285,18 @@ body::after{
     50%{transform:translateY(-5px);}
 }
 
-.contact-box h2{
+.contact-box h2,
+.socials h2,
+.numbers h2{
     color:#00e5ff;
-    font-size:1.8rem;
+    font-size:clamp(1.3rem, 3vw, 1.8rem);
     margin-bottom:16px;
 }
 
 .contact-box p{
     color:#d5d5d5;
     line-height:1.9;
-    font-size:1rem;
+    font-size:clamp(0.92rem, 2.2vw, 1rem);
     margin-bottom:16px;
 }
 
@@ -329,12 +334,6 @@ body::after{
 
 .socials{
     margin-top:28px;
-}
-
-.socials h2{
-    color:#00e5ff;
-    font-size:1.8rem;
-    margin-bottom:16px;
 }
 
 .social-grid{
@@ -389,12 +388,6 @@ body::after{
 
 .numbers{
     margin-top:28px;
-}
-
-.numbers h2{
-    color:#00e5ff;
-    font-size:1.8rem;
-    margin-bottom:16px;
 }
 
 .phone-grid{
@@ -591,17 +584,51 @@ body::after{
 }
 
 @media (max-width:768px){
-    .big-title{
-        letter-spacing:2px;
+    body{
+        cursor:auto;
     }
 
-    .sub-title{
-        font-size:0.9rem;
-        letter-spacing:1px;
+    .cursor,
+    .cursor-ring,
+    .spark{
+        display:none;
+    }
+
+    .site-logo img{
+        width:58px;
+    }
+
+    .navbar{
+        top:70px;
+        width:calc(100% - 16px);
+        gap:8px;
+        padding:10px 10px;
+    }
+
+    .navbar a{
+        font-size:0.78rem;
+    }
+
+    .navbar span{
+        display:none;
+    }
+
+    .hero{
+        padding:165px 14px 50px;
+    }
+
+    .contact-wrap{
+        padding:0 5% 100px;
     }
 
     .contact-box{
-        padding:22px;
+        padding:20px;
+    }
+
+    .formula,
+    .social-grid,
+    .phone-grid{
+        grid-template-columns:1fr;
     }
 
     .floating-whatsapp{
@@ -610,6 +637,65 @@ body::after{
         width:58px;
         height:58px;
         font-size:28px;
+    }
+}
+
+@media (max-width:480px){
+    .site-logo{
+        top:8px;
+        left:8px;
+    }
+
+    .site-logo img{
+        width:48px;
+    }
+
+    .navbar{
+        top:62px;
+        width:calc(100% - 12px);
+        padding:8px 8px;
+        border-radius:14px;
+    }
+
+    .navbar a{
+        font-size:0.7rem;
+    }
+
+    .hero{
+        padding:150px 12px 42px;
+    }
+
+    .big-title{
+        font-size:clamp(1.9rem, 11vw, 3rem);
+    }
+
+    .sub-title{
+        line-height:1.7;
+    }
+
+    .line{
+        width:120px;
+        margin-bottom:28px;
+    }
+
+    .contact-box{
+        padding:16px;
+        border-radius:14px;
+    }
+
+    .back-btn{
+        padding:12px 14px;
+        width:100%;
+        justify-content:center;
+    }
+
+    .social-card,
+    .phone-card{
+        padding:16px;
+    }
+
+    .popup-box{
+        padding:18px;
     }
 }
 </style>
@@ -760,35 +846,38 @@ const ring = document.querySelector(".cursor-ring");
 const popup = document.getElementById("popup");
 const closePopup = document.getElementById("closePopup");
 const floatingWhatsapp = document.getElementById("floatingWhatsapp");
+const isTouch = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
 
-document.addEventListener("mousemove",(e)=>{
-    const x = e.clientX;
-    const y = e.clientY;
+if(!isTouch){
+    document.addEventListener("mousemove",(e)=>{
+        const x = e.clientX;
+        const y = e.clientY;
 
-    cursor.style.left = x + "px";
-    cursor.style.top = y + "px";
-    ring.style.left = x + "px";
-    ring.style.top = y + "px";
+        cursor.style.left = x + "px";
+        cursor.style.top = y + "px";
+        ring.style.left = x + "px";
+        ring.style.top = y + "px";
 
-    const spark = document.createElement("div");
-    spark.className = "spark";
-    spark.style.left = x + "px";
-    spark.style.top = y + "px";
-    document.body.appendChild(spark);
+        const spark = document.createElement("div");
+        spark.className = "spark";
+        spark.style.left = x + "px";
+        spark.style.top = y + "px";
+        document.body.appendChild(spark);
 
-    setTimeout(()=> spark.remove(), 600);
-});
-
-document.querySelectorAll("a, .formula-card, .phone-card, .contact-box, .back-btn").forEach(el => {
-    el.addEventListener("mouseenter", () => {
-        cursor.classList.add("hover");
-        ring.classList.add("hover");
+        setTimeout(()=> spark.remove(), 600);
     });
-    el.addEventListener("mouseleave", () => {
-        cursor.classList.remove("hover");
-        ring.classList.remove("hover");
+
+    document.querySelectorAll("a, .formula-card, .phone-card, .contact-box, .back-btn").forEach(el => {
+        el.addEventListener("mouseenter", () => {
+            cursor.classList.add("hover");
+            ring.classList.add("hover");
+        });
+        el.addEventListener("mouseleave", () => {
+            cursor.classList.remove("hover");
+            ring.classList.remove("hover");
+        });
     });
-});
+}
 
 floatingWhatsapp.addEventListener("click", function(e){
     e.preventDefault();
