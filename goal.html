@@ -17,6 +17,7 @@
 html, body{
     width:100%;
     min-height:100%;
+    overflow-x:hidden;
 }
 
 body{
@@ -142,24 +143,25 @@ body::after{
 
 .big-title{
     font-size:clamp(3rem, 8vw, 7rem);
-    letter-spacing:8px;
+    letter-spacing:clamp(2px, 1vw, 8px);
     color:#fff;
     text-shadow:
         0 0 12px rgba(0,229,255,0.9),
         0 0 30px rgba(0,229,255,0.55),
         0 0 55px rgba(138,43,226,0.45);
     margin-bottom:18px;
+    line-height:1.05;
 }
 
 .sub-title{
-    font-size:1rem;
-    letter-spacing:4px;
+    font-size:clamp(0.8rem, 2.2vw, 1rem);
+    letter-spacing:clamp(2px, 0.8vw, 4px);
     color:#b8b8b8;
     margin-bottom:30px;
 }
 
 .line{
-    width:160px;
+    width:min(160px, 40vw);
     height:3px;
     background:linear-gradient(90deg, #00e5ff, #8a2be2);
     margin:0 auto 40px;
@@ -186,11 +188,12 @@ body::after{
 }
 
 .goal-text{
-    font-size:clamp(2rem, 6vw, 5rem);
+    font-size:clamp(1.7rem, 5.5vw, 5rem);
     font-weight:900;
-    letter-spacing:3px;
+    letter-spacing:clamp(1px, 0.5vw, 3px);
     color:#fff;
     text-shadow:0 0 18px rgba(0,229,255,0.45);
+    line-height:1.1;
 }
 
 .crossmark{
@@ -264,19 +267,46 @@ body::after{
 .details-box h2{
     color:#00e5ff;
     margin-bottom:14px;
-    font-size:1.5rem;
+    font-size:clamp(1.2rem, 3vw, 1.5rem);
 }
 
 .details-box p{
     color:#d0d0d0;
     line-height:1.8;
-    font-size:1rem;
+    font-size:clamp(0.92rem, 2.3vw, 1rem);
     margin-bottom:16px;
 }
 
+/* MOBILE */
 @media (max-width:768px){
+    body{
+        cursor:auto;
+    }
+
+    .cursor,
+    .cursor-ring,
+    .spark{
+        display:none;
+    }
+
+    .site-logo img{
+        width:58px;
+    }
+
+    .hero{
+        padding:100px 14px 40px;
+    }
+
     .big-title{
-        letter-spacing:4px;
+        letter-spacing:3px;
+    }
+
+    .goal-list{
+        gap:18px;
+    }
+
+    .goal-item{
+        gap:12px;
     }
 
     .goal-text{
@@ -288,8 +318,64 @@ body::after{
         transform:scale(0.85);
     }
 
+    .details{
+        padding:20px 6% 70px;
+    }
+
     .details-box{
-        padding:22px;
+        padding:20px;
+        border-radius:14px;
+    }
+}
+
+@media (max-width:480px){
+    .site-logo{
+        top:8px;
+        left:8px;
+    }
+
+    .site-logo img{
+        width:48px;
+    }
+
+    .hero{
+        padding:88px 12px 34px;
+    }
+
+    .big-title{
+        font-size:clamp(2rem, 12vw, 2.9rem);
+    }
+
+    .sub-title{
+        letter-spacing:1.5px;
+        margin-bottom:22px;
+    }
+
+    .line{
+        width:120px;
+        margin-bottom:28px;
+    }
+
+    .goal-item{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .goal-text{
+        font-size:clamp(1.5rem, 10vw, 2.2rem);
+    }
+
+    .crossmark,
+    .checkmark{
+        transform:scale(0.72);
+    }
+
+    .details{
+        padding:18px 5% 60px;
+    }
+
+    .details-box{
+        padding:16px;
     }
 }
 </style>
@@ -344,35 +430,38 @@ body::after{
 <script>
 const cursor = document.querySelector(".cursor");
 const ring = document.querySelector(".cursor-ring");
+const isTouch = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
 
-document.addEventListener("mousemove",(e)=>{
-    const x = e.clientX;
-    const y = e.clientY;
+if(!isTouch){
+    document.addEventListener("mousemove",(e)=>{
+        const x = e.clientX;
+        const y = e.clientY;
 
-    cursor.style.left = x + "px";
-    cursor.style.top = y + "px";
-    ring.style.left = x + "px";
-    ring.style.top = y + "px";
+        cursor.style.left = x + "px";
+        cursor.style.top = y + "px";
+        ring.style.left = x + "px";
+        ring.style.top = y + "px";
 
-    const spark = document.createElement("div");
-    spark.className = "spark";
-    spark.style.left = x + "px";
-    spark.style.top = y + "px";
-    document.body.appendChild(spark);
+        const spark = document.createElement("div");
+        spark.className = "spark";
+        spark.style.left = x + "px";
+        spark.style.top = y + "px";
+        document.body.appendChild(spark);
 
-    setTimeout(()=> spark.remove(), 600);
-});
-
-document.querySelectorAll("a, .goal-item, .details-box").forEach(el => {
-    el.addEventListener("mouseenter", () => {
-        cursor.classList.add("hover");
-        ring.classList.add("hover");
+        setTimeout(()=> spark.remove(), 600);
     });
-    el.addEventListener("mouseleave", () => {
-        cursor.classList.remove("hover");
-        ring.classList.remove("hover");
+
+    document.querySelectorAll("a, .goal-item, .details-box").forEach(el => {
+        el.addEventListener("mouseenter", () => {
+            cursor.classList.add("hover");
+            ring.classList.add("hover");
+        });
+        el.addEventListener("mouseleave", () => {
+            cursor.classList.remove("hover");
+            ring.classList.remove("hover");
+        });
     });
-});
+}
 </script>
 
 </body>
