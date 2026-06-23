@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact Us - Aura Developer</title>
 
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
 
 <style>
 *{
@@ -17,14 +15,12 @@
     box-sizing:border-box;
 }
 
-
 html, body{
     width:100%;
     min-height:100%;
     scroll-behavior:smooth;
     overflow-x:hidden;
 }
-
 
 body{
     font-family:'Orbitron', sans-serif;
@@ -36,7 +32,6 @@ body{
     cursor:none;
 }
 
-
 /* BACKGROUND */
 .light-rays{
     position:fixed;
@@ -44,7 +39,6 @@ body{
     overflow:hidden;
     z-index:-3;
 }
-
 
 .ray{
     position:absolute;
@@ -55,13 +49,11 @@ body{
     animation:rayMove 18s linear infinite;
 }
 
-
 .ray:nth-child(2){
     left:25%;
     animation-delay:-6s;
     background:linear-gradient(180deg, transparent, rgba(138,43,226,0.08), transparent);
 }
-
 
 .ray:nth-child(3){
     left:55%;
@@ -69,12 +61,10 @@ body{
     background:linear-gradient(180deg, transparent, rgba(0,255,170,0.08), transparent);
 }
 
-
 @keyframes rayMove{
     0%{transform:rotate(45deg) translateX(-150%);}
     100%{transform:rotate(45deg) translateX(150%);}
 }
-
 
 body::before{
     content:"";
@@ -87,7 +77,6 @@ body::before{
     z-index:-2;
     pointer-events:none;
 }
-
 
 body::after{
     content:"";
@@ -102,7 +91,6 @@ body::after{
     pointer-events:none;
 }
 
-
 /* CURSOR */
 .cursor{
     position:fixed;
@@ -116,7 +104,6 @@ body::after{
     z-index:99999;
 }
 
-
 .cursor-ring{
     position:fixed;
     width:50px;
@@ -129,7 +116,6 @@ body::after{
     transition:0.15s ease;
 }
 
-
 .cursor.hover{
     width:24px;
     height:24px;
@@ -137,13 +123,11 @@ body::after{
     box-shadow:0 0 30px #00e5ff, 0 0 60px #8a2be2;
 }
 
-
 .cursor-ring.hover{
     width:70px;
     height:70px;
     border-color:rgba(0,229,255,1);
 }
-
 
 /* LOGO */
 .site-logo{
@@ -155,16 +139,15 @@ body::after{
     text-decoration:none;
 }
 
-
 .site-logo img{
     width:72px;
     height:auto;
     transition:0.4s ease;
 }
 
-
-.site-logo img:hover{transform:scale(1.05);}
-
+.site-logo img:hover{
+    transform:scale(1.05);
+}
 
 /* NAV */
 .navbar{
@@ -186,7 +169,6 @@ body::after{
     align-items:center;
 }
 
-
 .navbar a{
     color:#fff;
     text-decoration:none;
@@ -194,18 +176,15 @@ body::after{
     white-space:nowrap;
 }
 
-
 .navbar a:hover{
     color:#00e5ff;
     text-shadow:0 0 15px #00e5ff;
 }
 
-
 .navbar span{
     color:#00e5ff;
     opacity:.6;
 }
-
 
 /* HERO */
 .hero{
@@ -217,9 +196,9 @@ body::after{
     padding:120px 20px 60px;
 }
 
-
-.hero-content{max-width:1100px;}
-
+.hero-content{
+    max-width:1100px;
+}
 
 .big-title{
     font-size:clamp(2.4rem, 6.5vw, 5.5rem);
@@ -233,14 +212,13 @@ body::after{
     transform:translateY(50px);
 }
 
-
-.big-title:nth-child(2){animation-delay:0.3s;}
-
+.big-title:nth-child(2){
+    animation-delay:0.3s;
+}
 
 @keyframes titleEnter{
     to{opacity:1; transform:translateY(0);}
 }
-
 
 .sub-title{
     font-size:1rem;
@@ -253,15 +231,12 @@ body::after{
     opacity:0;
 }
 
-
 .sub-title:nth-child(3){animation-delay:0.5s;}
 .sub-title:nth-child(4){animation-delay:0.7s;}
-
 
 @keyframes fadeUp{
     to{opacity:1; transform:translateY(0);}
 }
-
 
 .line{
     width:180px;
@@ -275,13 +250,11 @@ body::after{
     width:0;
 }
 
-
 @keyframes lineExpand{
     to{width:180px; opacity:1;}
 }
 
-
-/* BACK BUTTON - SIMPLE & WORKING */
+/* BACK BUTTON */
 .back-btn{
     display:inline-flex;
     align-items:center;
@@ -298,7 +271,6 @@ body::after{
     cursor:none;
 }
 
-
 .back-btn:hover{
     transform:translateY(-5px) scale(1.05);
     border-color:rgba(0,229,255,0.5);
@@ -306,11 +278,9 @@ body::after{
     color:#00e5ff;
 }
 
-
 .back-btn i{
     color:#00e5ff;
 }
-
 
 /* CONTACT BOX */
 .contact-wrap{
@@ -318,7 +288,6 @@ body::after{
     margin:0 auto;
     padding:0 10% 120px;
 }
-
 
 .contact-box{
     background:rgba(255,255,255,0.04);
@@ -333,18 +302,15 @@ body::after{
     transition:0.4s ease;
 }
 
-
 @keyframes cardEnter{
     to{opacity:1; transform:translateY(0);}
 }
-
 
 .contact-box:hover{
     transform:translateY(-10px) scale(1.02);
     box-shadow:0 30px 100px rgba(0,229,255,0.25);
     border-color:rgba(0,229,255,0.4);
 }
-
 
 .contact-box h2{
     color:#00e5ff;
@@ -353,7 +319,6 @@ body::after{
     text-shadow:0 0 15px #00e5ff;
 }
 
-
 .contact-box p{
     color:#d5d5d5;
     line-height:1.9;
@@ -361,14 +326,12 @@ body::after{
     margin-bottom:16px;
 }
 
-
 .formula{
     margin-top:22px;
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:16px;
 }
-
 
 .formula-card{
     background:rgba(0,229,255,0.06);
@@ -379,13 +342,11 @@ body::after{
     transition:0.5s ease;
 }
 
-
 .formula-card:hover{
     transform:translateY(-8px) scale(1.05);
     box-shadow:0 20px 60px rgba(0,229,255,0.3);
     border-color:rgba(0,229,255,0.6);
 }
-
 
 .formula-card h3{
     color:#fff;
@@ -393,15 +354,12 @@ body::after{
     font-size:1.05rem;
 }
 
-
 .formula-card span{
     color:#00e5ff;
     font-size:1.15rem;
 }
 
-
 .socials{margin-top:32px;}
-
 
 .socials h2{
     color:#00e5ff;
@@ -409,13 +367,11 @@ body::after{
     margin-bottom:16px;
 }
 
-
 .social-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:16px;
 }
-
 
 .social-card{
     display:flex;
@@ -428,8 +384,9 @@ body::after{
     border-radius:18px;
     padding:20px 22px;
     transition:0.5s ease;
+    min-width:0;
+    overflow:hidden;
 }
-
 
 .social-card:hover{
     transform:translateY(-6px) scale(1.03);
@@ -437,30 +394,50 @@ body::after{
     border-color:rgba(0,229,255,0.5);
 }
 
-
 .social-card i{
     font-size:2rem;
     width:30px;
     text-align:center;
+    flex:0 0 auto;
 }
 
-
 .social-card.whatsapp i{color:#25D366;}
-
 
 .social-card .text{
     display:flex;
     flex-direction:column;
     gap:4px;
+    min-width:0;
+    flex:1;
 }
 
+.social-card .text strong{
+    font-size:0.92rem;
+    color:#fff;
+    line-height:1.2;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+}
 
-.social-card .text strong{font-size:1rem; color:#fff;}
-.social-card .text small{color:#bdbdbd; font-size:0.9rem;}
+.social-card .text small{
+    color:#bdbdbd;
+    font-size:0.78rem;
+    line-height:1.2;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+}
 
+.social-grid .social-card:nth-child(2) .text strong,
+.social-grid .social-card:nth-child(3) .text strong{
+    font-size:0.86rem;
+}
+
+.social-grid .social-card:nth-child(2) .text small,
+.social-grid .social-card:nth-child(3) .text small{
+    font-size:0.72rem;
+}
 
 .numbers{margin-top:32px;}
-
 
 .numbers h2{
     color:#00e5ff;
@@ -468,13 +445,11 @@ body::after{
     margin-bottom:16px;
 }
 
-
 .phone-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:16px;
 }
-
 
 .phone-card{
     background:rgba(255,255,255,0.04);
@@ -484,13 +459,11 @@ body::after{
     transition:0.5s ease;
 }
 
-
 .phone-card:hover{
     transform:translateY(-6px) scale(1.03);
     box-shadow:0 20px 60px rgba(0,229,255,0.25);
     border-color:rgba(0,229,255,0.4);
 }
-
 
 .phone-card .label{
     color:#bdbdbd;
@@ -498,19 +471,16 @@ body::after{
     margin-bottom:8px;
 }
 
-
 .phone-card a{
     color:#fff;
     text-decoration:none;
     font-size:1.05rem;
 }
 
-
 .phone-card a:hover{
     color:#00e5ff;
     text-shadow:0 0 15px #00e5ff;
 }
-
 
 .footer-note{
     margin-top:32px;
@@ -520,7 +490,6 @@ body::after{
     color:#d9d9d9;
     line-height:1.8;
 }
-
 
 /* FLOATING WHATSAPP */
 .floating-whatsapp{
@@ -544,18 +513,15 @@ body::after{
     transition:0.3s ease;
 }
 
-
 @keyframes botPulse{
     0%,100%{transform:translateY(0) scale(1);}
     50%{transform:translateY(-6px) scale(1.05);}
 }
 
-
 .floating-whatsapp:hover{
     transform:scale(1.15);
     box-shadow:0 0 30px rgba(0,229,255,0.6), 0 0 60px rgba(37,211,102,0.6);
 }
-
 
 /* POPUP */
 .popup{
@@ -570,9 +536,7 @@ body::after{
     backdrop-filter:blur(10px);
 }
 
-
 .popup.show{display:flex;}
-
 
 .popup-box{
     width:min(420px, 100%);
@@ -583,7 +547,6 @@ body::after{
     box-shadow:0 0 80px rgba(0,229,255,0.3);
 }
 
-
 .popup-box h3{
     color:#00e5ff;
     margin-bottom:16px;
@@ -591,13 +554,11 @@ body::after{
     text-align:center;
 }
 
-
 .popup-options{
     display:grid;
     gap:14px;
     margin-top:16px;
 }
-
 
 .popup-options a{
     display:flex;
@@ -612,13 +573,11 @@ body::after{
     transition:0.4s ease;
 }
 
-
 .popup-options a:hover{
     transform:translateY(-4px) scale(1.02);
     border-color:rgba(37,211,102,0.5);
     background:rgba(37,211,102,0.1);
 }
-
 
 .popup-close{
     margin-top:18px;
@@ -632,12 +591,10 @@ body::after{
     font-family:inherit;
 }
 
-
 .popup-close:hover{
     background:rgba(0,229,255,0.2);
     color:#00e5ff;
 }
-
 
 @media (max-width:768px){
     body{cursor:auto;}
@@ -656,7 +613,6 @@ body::after{
     .navbar span{display:none;}
 }
 
-
 @media (max-width:480px){
     .site-logo{top:8px; left:8px;}
     .site-logo img{width:48px;}
@@ -669,9 +625,7 @@ body::after{
 </style>
 </head>
 
-
 <body>
-
 
 <div class="light-rays">
     <div class="ray"></div>
@@ -679,15 +633,12 @@ body::after{
     <div class="ray"></div>
 </div>
 
-
 <div class="cursor"></div>
 <div class="cursor-ring"></div>
-
 
 <a href="home.html" class="site-logo">
     <img src="logo.png" alt="Aura Developers Logo">
 </a>
-
 
 <nav class="navbar">
     <a href="home.html">Home</a>
@@ -703,7 +654,6 @@ body::after{
     <a href="apply.html">Apply</a>
 </nav>
 
-
 <section class="hero" id="home">
     <div class="hero-content">
         <div class="big-title">GOT AN IDEA?</div>
@@ -718,7 +668,6 @@ body::after{
     </div>
 </section>
 
-
 <div class="contact-wrap">
     <div class="contact-box">
         <a href="home.html" class="back-btn">
@@ -726,13 +675,11 @@ body::after{
             Back to Home
         </a>
 
-
         <h2>Contact Us</h2>
         <p>
             If you have a project idea, want a website, or need help bringing your vision online,
             connect with us through the platforms below.
         </p>
-
 
         <div class="formula">
             <div class="formula-card">
@@ -749,7 +696,6 @@ body::after{
             </div>
         </div>
 
-
         <div class="socials">
             <h2>Instagram</h2>
             <div class="social-grid">
@@ -761,7 +707,6 @@ body::after{
                     </div>
                 </a>
 
-
                 <a class="social-card" href="https://www.instagram.com/atharva_nirankari/" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-instagram"></i>
                     <div class="text">
@@ -769,13 +714,19 @@ body::after{
                         <small>Instagram Profile</small>
                     </div>
                 </a>
+
+                <a class="social-card" href="https://www.instagram.com/auradeveloperlimited/" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-instagram"></i>
+                    <div class="text">
+                        <strong>@auradeveloperlimited</strong>
+                        <small>Instagram Profile</small>
+                    </div>
+                </a>
             </div>
         </div>
 
-
         <div class="numbers">
             <h2>WhatsApp Contact</h2>
-
 
             <a href="#" class="social-card whatsapp" id="whatsappBtn">
                 <i class="fa-brands fa-whatsapp"></i>
@@ -784,7 +735,6 @@ body::after{
                     <small>Choose Daksh or Atharva</small>
                 </div>
             </a>
-
 
             <div class="phone-grid">
                 <div class="phone-card">
@@ -798,7 +748,6 @@ body::after{
             </div>
         </div>
 
-
         <div class="footer-note">
             Reach out to us for web design, development, and creative digital projects.
             We are ready to build something that feels professional, modern, and powerful.
@@ -806,11 +755,9 @@ body::after{
     </div>
 </div>
 
-
 <a class="floating-whatsapp" href="#" id="floatingWhatsapp">
     <i class="fa-brands fa-whatsapp"></i>
 </a>
-
 
 <div class="popup" id="popup">
     <div class="popup-box">
@@ -829,7 +776,6 @@ body::after{
     </div>
 </div>
 
-
 <script>
 const cursor = document.querySelector(".cursor");
 const ring = document.querySelector(".cursor-ring");
@@ -838,7 +784,6 @@ const closePopup = document.getElementById("closePopup");
 const floatingWhatsapp = document.getElementById("floatingWhatsapp");
 const isTouch = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
 
-
 if(!isTouch){
     document.addEventListener("mousemove",(e)=>{
         cursor.style.left = e.clientX + "px";
@@ -846,7 +791,6 @@ if(!isTouch){
         ring.style.left = e.clientX + "px";
         ring.style.top = e.clientY + "px";
     });
-
 
     document.querySelectorAll("a, .formula-card, .phone-card, .contact-box, .back-btn, .social-card").forEach(el => {
         el.addEventListener("mouseenter", () => {
@@ -860,16 +804,24 @@ if(!isTouch){
     });
 }
 
-
 floatingWhatsapp.addEventListener("click", function(e){
     e.preventDefault();
     popup.classList.add("show");
 });
 
-
 closePopup.addEventListener("click", function(){
     popup.classList.remove("show");
 });
+
+popup.addEventListener("click", function(e){
+    if(e.target === popup){
+        popup.classList.remove("show");
+    }
+});
+</script>
+
+</body>
+</html>
 
 
 popup.addEventListener("click", function(e){
